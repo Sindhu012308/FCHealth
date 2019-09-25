@@ -11,20 +11,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+@Component
 @Entity
 @Table(name="FCHEALTH_BP")
 public class FCHealthBP {
-	
+	@JsonIgnore
 	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
-	//@ManyToOne(fetch = FetchType.LAZY, targetEntity=PatientProfile.class)
-	//@JoinColumn(name="pid", nullable= false)
-	//@Column(name="PID") 
+	@JsonIgnore
 	private long pid;
 	
+	@JsonIgnore
 	@Column(name="BP_DATE")
 	private Date bpDate;
 	
@@ -36,6 +38,12 @@ public class FCHealthBP {
 
 	public FCHealthBP() {
 		super();
+	}
+	
+	public FCHealthBP(long highBP, long lowBP) {
+		super();
+		this.highBP = highBP;
+		this.lowBP = lowBP;
 	}
 
 	public FCHealthBP(long pid, Date bpDate, long highBP, long lowBP) {

@@ -12,59 +12,69 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="FCHEALTH_WEIGHT")
 public class FCHealthWeight {
 
 	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="ID") 
-	private long id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="ID")
+	private Long id;
 	
 	//@ManyToOne(fetch = FetchType.LAZY, targetEntity=PatientProfile.class )
 	//@JoinColumn(name="pid", nullable= false)
-	@Column(name="PID") 
-	private long pid;
+	@Column(name="PID")
+	private Long pid;
 	
 	@Column(name="W_DATE")
 	private Date weightDate;
 	
 	@Column(name="WEIGHT")
-	private long weight;
+	private Long weight;
+	
+	@Column(name="DAY")
+	private Integer day;
+	
+	@Column(name="MONTH")
+	private Integer month;
+	
+	@Column(name="YEAR")
+	private Integer year;
+	
 	
 	public FCHealthWeight() {
 		super();
 	}
 
-	public FCHealthWeight(long weight) {
+//	public FCHealthWeight(Long weight) {
+//		super();
+//		this.weight = weight;
+//	}
+//	
+//	
+//	public FCHealthWeight(Long weight, Integer month) {
+//		super();
+//		this.weight = weight;
+//		this.month = month;
+//	}
+//
+	public FCHealthWeight(Long pid, Date weightDate, Long weight, Integer day, Integer month, Integer year) {
 		super();
-		this.weight = weight;
-	}
-
-	public FCHealthWeight(long personId, long weight) {
-		super();
-		this.pid = personId;
-		this.weight = weight;
-	}
-	
-	public FCHealthWeight( long weight, Date weightDate) {
-		super();
+		this.pid = pid;
 		this.weightDate = weightDate;
 		this.weight = weight;
+		this.day = day;
+		this.month = month;
+		this.year = year;
 	}
 
-	public FCHealthWeight(long personId, Date date, long weight) {
-		super();
-		this.pid = personId;
-		this.weightDate = date;
-		this.weight = weight;
-	}
-
-	public long getPid() {
+	public Long getPid() {
 		return pid;
 	}
 
-	public void setPid(long personId) {
+	public void setPid(Long personId) {
 		this.pid = personId;
 	}
 	
@@ -76,17 +86,42 @@ public class FCHealthWeight {
 		this.weightDate = weightDate;
 	}
 
-	public long getWeight() {
+	public Long getWeight() {
 		return weight;
 	}
 
-	public void setWeight(long weight) {
+	public void setWeight(Long weight) {
 		this.weight = weight;
+	}
+
+	public Integer getDay() {
+		return day;
+	}
+
+	public void setDay(Integer day) {
+		this.day = day;
+	}
+
+	public Integer getMonth() {
+		return month;
+	}
+
+	public void setMonth(Integer month) {
+		this.month = month;
+	}
+
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
 	}
 
 	@Override
 	public String toString() {
-		return "FCHealth_Weight [personId=" + pid + ", date=" + weightDate + ", weight=" + weight + "]";
+		return "FCHealthWeight [pid=" + pid + ", weightDate=" + weightDate + ", weight=" + weight + ", day=" + day
+				+ ", month=" + month + ", year=" + year + "]";
 	}
 	
 }

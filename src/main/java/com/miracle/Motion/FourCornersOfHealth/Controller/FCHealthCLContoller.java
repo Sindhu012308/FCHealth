@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import com.miracle.Motion.FourCornersOfHealth.Service.CommonService;
 
 @RestController
 @RequestMapping("/CL")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class FCHealthCLContoller {
 	
 	@Autowired
@@ -39,6 +41,7 @@ public class FCHealthCLContoller {
 	   @PostMapping("/PatientCL")
 	   public FCHealthCL newFCHealthCl(@RequestBody FCHealthCL fcChol) {
 		   fcChol.setClDate(new Date());
+		   fcChol.setPid(2);
 		  // System.out.println(new Date());
 		   return clRepository.save(fcChol);
 	   }
@@ -46,7 +49,9 @@ public class FCHealthCLContoller {
 	   @GetMapping("/CurrentCL/{patientId}")
 	   public String recentClOfPatient(@PathVariable("patientId") long patientId, @Value("${clQuery}") String query) {
 		  // System.out.println (query);
+		   
 		   long valueByPid = clRepository.findRecentValueByPid(patientId, query);
+		   System.out.println (valueByPid);
 		   if(valueByPid != 0)
 			   return valueByPid+"";
 		   else

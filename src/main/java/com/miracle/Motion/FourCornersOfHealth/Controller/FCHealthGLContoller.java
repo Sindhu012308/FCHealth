@@ -5,6 +5,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +23,7 @@ import com.miracle.Motion.FourCornersOfHealth.Service.CommonService;
 
 @RestController
 @RequestMapping("/GL")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class FCHealthGLContoller {
 	
 	@Autowired
@@ -53,6 +58,17 @@ public class FCHealthGLContoller {
 		   else
 			   return "No Patient Available";
 	   }
+	   
+	   
+//	   @GetMapping(value="/CurrentWeight/{patientId}",produces=MediaType.APPLICATION_JSON_VALUE)
+//	   public ResponseEntity<?>  recentWeightOfPatient(@PathVariable("patientId") long patientId, @Value("${weightQuery}") String query) {
+//		  // System.out.println (query);
+//		   long valueByPid = weightRepository.findRecentValueByPid(patientId, query);
+//		   if(valueByPid != 0)
+//			   return new ResponseEntity<>(valueByPid, HttpStatus.OK);
+//		   else
+//			    return new ResponseEntity<>("No Patient", HttpStatus.BAD_REQUEST);
+//	   }
 	
 
 }
