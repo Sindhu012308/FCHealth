@@ -28,7 +28,7 @@ import com.miracle.Motion.FourCornersOfHealth.Entity.JwtRequest;
 public class FacebookController {
 
 	// Creates a facebook connection using the given application id and secret key.
-	private FacebookConnectionFactory factory = new FacebookConnectionFactory("408873933077938", "7496e9bb8d1d972d4add24b0f7aa0b1b");
+	private FacebookConnectionFactory factory = new FacebookConnectionFactory("fBDeveloperclientID", "secretKey");
 
 
 	// Redirection uri.
